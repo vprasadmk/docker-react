@@ -1,0 +1,11 @@
+#Indicates provide all the permissions
+sudo: required
+# This indecates it needs docker
+services:
+    - docker
+# What to do as prestep
+before_install:
+    - docker build -t venkateshprasad/docker-react -f Dockerfile.dev .
+
+scripts:
+    - docker run -e CI=true venkateshprasad/docker-react npm run test -- --coverage
